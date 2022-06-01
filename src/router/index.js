@@ -12,20 +12,25 @@ const routes = [
         component: Login
     },
     {
+        path: '/home',
+        name: 'Home',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
+    },
+    {
         path: '/consultas',
         name: 'Consultas',
         component: () => import(/* webpackChunkName: "about" */ '../views/Consultas.vue'),
     },
     {
-        path: '/home',
-        name: 'Home',
-        component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
+        path: '/cadastrar/:id',
+        name: 'Cadastrar',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Cadastrar.vue'),
+        props: true
     },
 ]
 
 const router = new VueRouter({
     mode: 'history',
-    // base: process.env.BASE_URL,
     routes
 })
 

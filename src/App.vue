@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <Navbar v-if="getUser !== null" />
-    <router-view />
+    <Login v-if="getUser == null"/>
+    <Base v-else />  
   </div>
 </template>
-
 <script>
-import Navbar from '@/components/Navbar'
+import Login from '@/views/Login'
+import Base from '@/views/Base'
 import { mapGetters } from 'vuex'
 export default {
   name: 'App',
@@ -14,16 +14,15 @@ export default {
     ...mapGetters(['getUser'])
   },
   components: {
-    Navbar
+    Login,
+    Base
   }
 }
 </script>
-
 <style>
 body {
   margin: 0 !important;
 }
-
 #app {
   text-align: center;
 }

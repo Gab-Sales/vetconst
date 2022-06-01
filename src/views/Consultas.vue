@@ -1,13 +1,12 @@
 <template>
     <div class="p-5">
         <div class="my-3" style="text-align: right;">
-            <b-button variant="primary">Nova consulta</b-button>
+            <b-button variant="primary" v-on:click="cadastrar(null)">Nova consulta</b-button>
         </div>
         <b-table responsive striped hover :items="items" :fields="fields" :per-page="perPage"
             :current-page="currentPage">
             <template #cell(edit)="data">
-                <!-- {{ data.item }} -->
-                <b-icon icon="question-circle"></b-icon>
+             <b-button variant="primary" size="sm" v-on:click="cadastrar(data.item)">Editar</b-button>
             </template>
         </b-table>
         <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" aria-controls="my-table"
@@ -19,7 +18,6 @@
 export default {
     data() {
         return {
-            // Note 'isActive' is left out and will not appear in the rendered table
             fields: [
                 {
                     key: 'id',
@@ -35,7 +33,6 @@ export default {
                     key: 'paciente',
                     label: 'Paciente',
                     sortable: true,
-                    // Variant applies to the whole column, including the header and footer
                 },
                 {
                     key: "edit",
@@ -43,18 +40,36 @@ export default {
                 }
             ],
             items: [
-                { id: 40, paciente: 'Dickerson', veterinario: 'Macdonald' },
-                { id: 21, paciente: 'Larsen', veterinario: 'Shaw' },
-                { id: 89, paciente: 'Geneva', veterinario: 'Wilson' },
-                { id: 38, paciente: 'Jami', veterinario: 'Carney' }
+                { id: 1, paciente: 'Dickerson', veterinario: 'Macdonald' },
+                { id:2, paciente: 'Larsen', veterinario: 'Shaw' },
+                { id: 3, paciente: 'Geneva', veterinario: 'Wilson' },
+                { id: 4, paciente: 'Jami', veterinario: 'Carney' },
+                { id: 5, paciente: 'Dickerson', veterinario: 'Macdonald' },
+                { id: 6, paciente: 'Larsen', veterinario: 'Shaw' },
+                { id: 7, paciente: 'Geneva', veterinario: 'Wilson' },
+                { id: 8, paciente: 'Jami', veterinario: 'Carney' },
+                { id: 9, paciente: 'Dickerson', veterinario: 'Macdonald' },
+                { id: 10, paciente: 'Larsen', veterinario: 'Shaw' },
+                { id: 11, paciente: 'Geneva', veterinario: 'Wilson' },
+                { id: 12, paciente: 'Jami', veterinario: 'Carney' },
+                { id: 13, paciente: 'Dickerson', veterinario: 'Macdonald' },
+                { id: 14, paciente: 'Larsen', veterinario: 'Shaw' },
+                { id: 15, paciente: 'Geneva', veterinario: 'Wilson' },
+                { id: 16, paciente: 'Jami', veterinario: 'Carney' }
             ],
-            perPage: 4,
+            perPage: 10,
             currentPage: 1,
         }
     },
     computed: {
         rows() {
             return this.items.length
+        }
+    },
+    methods:{
+        cadastrar(consulta){
+            const id = consulta !== null ? consulta.id : 0
+            this.$router.push({name: 'Cadastrar', params: {id:id, test: consulta }}) 
         }
     }
 }
