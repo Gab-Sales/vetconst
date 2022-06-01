@@ -6,7 +6,7 @@
         <b-table responsive striped hover :items="items" :fields="fields" :per-page="perPage"
             :current-page="currentPage">
             <template #cell(edit)="data">
-             <b-button variant="primary" size="sm" v-on:click="cadastrar(data.item)">Editassr</b-button>
+             <b-button variant="primary" size="sm" v-on:click="cadastrar(data.item)">Editar</b-button>
             </template>
         </b-table>
         <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage" aria-controls="my-table"
