@@ -4,11 +4,11 @@
             <h5>VetConst</h5>
             <hr />
             <b-form-group id="input-group-1" label="ID" label-for="input-1">
-                <b-form-input id="input-1" v-model="form.id" placeholder="ID" required>
+                <b-form-input id="input-1" v-model="form.login" placeholder="ID" required>
                 </b-form-input>
             </b-form-group>
             <b-form-group id="input-group-2" label="Senha" label-for="input-2">
-                <b-form-input id="input-2" type="password" v-model="form.password" placeholder="Password" required>
+                <b-form-input id="input-2" type="password" v-model="form.senha" placeholder="Password" required>
                 </b-form-input>
             </b-form-group>
 
@@ -26,14 +26,14 @@ export default {
     data() {
         return {
             form: {
-                id: '',
-                password: ''
+                login: '',
+                senha: ''
             }
         }
     },
     computed: {
         disableButton() {
-            return this.form.id.length >= 3 && this.form.password.length >= 3 ? false : true
+            return this.form.login.length >= 3 && this.form.senha.length >= 3 ? false : true
         }
     },
     methods: {

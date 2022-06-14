@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
+import VueJwtDecode from 'vue-jwt-decode'
 
 Vue.use(Vuex)
 
@@ -32,9 +34,14 @@ export default new Vuex.Store({
         async doLogin({ commit }, user) {
             try {
                 commit('authRequest')
-                // const resp = await service.post('token/', user)
-                window.localStorage.setItem('user', JSON.stringify(user))
-                commit('authSuccess', user)
+                const resp = await axios.post(process.env.VUE_APP_BASE_URL + 'api/auth/signin', user)
+                const tk = VueJwtDecode.decode(resp.data.tokenJwt)
+                const userInfo = {
+                    id: tk.sub,
+                    token: resp.data.tokenJwt
+                }
+                window.localStorage.setItem('user', JSON.stringify(userInfo))
+                commit('authSuccess', userInfo)
             } catch (error) {
                 commit('authError')
                 window.localStorage.removeItem('user')
