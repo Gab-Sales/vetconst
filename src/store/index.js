@@ -42,9 +42,11 @@ export default new Vuex.Store({
                 }
                 window.localStorage.setItem('user', JSON.stringify(userInfo))
                 commit('authSuccess', userInfo)
+                return resp.request.status
             } catch (error) {
                 commit('authError')
                 window.localStorage.removeItem('user')
+                return error.request.status
             }
         },
         async doLogout({ commit }) {

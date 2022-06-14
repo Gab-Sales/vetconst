@@ -38,14 +38,20 @@ export default {
     },
     methods: {
         ...mapActions(['doLogin']),
-        login() {
-            this.doLogin(this.form)
-                .then(() => {
-                    this.$router.push({ path: '/home' })
+        async login() {
+            const ret = await this.doLogin(this.form)
+            console.log(ret)
+            if (ret == 200) {
+                this.$router.push({ path: '/home' })
+            }
+            else {
+                this.$bvToast.toast(`Verifique suas credencias e tente novamente.`, {
+                    title: 'Ops!',
+                    variant: 'danger',
+                    autoHideDelay: 3000,
+                    appendToast: false
                 })
-                .catch(error => {
-                    alert(JSON.stringify(error))
-                })
+            }
         }
     }
 }
