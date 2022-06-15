@@ -85,6 +85,13 @@ export default {
                         nome: data.data[i].usuarioCliente.nome
                     })
                 }
+            } else {
+                this.$bvToast.toast(`Verifique a validade do token`, {
+                    title: 'Ops',
+                    variant: 'danger',
+                    autoHideDelay: 3000,
+                    appendToast: false
+                })
             }
         },
         cadastrar(consulta) {
