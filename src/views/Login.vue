@@ -91,12 +91,12 @@ export default {
             }
         },
         async cadastrar() {
-            const ret = await axios.post(process.env.VUE_APP_BASE_URL + 'api/auth/signup', { ...this.form, cargos: ["CLIENTE", "ADMIN"] })
-            if (ret.status == 201) {
+            try {
+                const ret = await axios.post(process.env.VUE_APP_BASE_URL + 'api/auth/signup', { ...this.form, cargos: ["CLIENTE", "ADMIN"] })
                 this.login()
             }
-            else {
-                this.$bvToast.toast(`Verifique a validade do token e tente novamente.`, {
+            catch (error) {
+                this.$bvToast.toast(`Verifique seus dados tente novamente.`, {
                     title: 'Ops!',
                     variant: 'danger',
                     autoHideDelay: 3000,
