@@ -27,11 +27,14 @@ const routes = [
         component: () => import(/* webpackChunkName: "about" */ '../views/Cadastrar.vue'),
         props: true
     },
+    {
+        path: '*',
+        name
+    }
 ]
 
 const router = new VueRouter({
     mode: 'history',
-    base: process.env.VUE_APP_BASE_URL,
     routes
 })
 
